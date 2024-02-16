@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Language Select</title>
+    <style>
+        /* CSS for Language Select */
+        .language-select {
+            position: relative;
+            display: inline-block;
+        }
+        .language-select select {
+            padding: 10px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url('https://www.countryflags.io/us/flat/24.png') no-repeat scroll right center transparent;
+            background-size: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .language-select select:focus {
+            outline: none;
+        }
+        /* CSS for Flag Icons */
+        .language-flag {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="language-select">
+    <select id="languageSelector" onchange="changeLanguage()">
+        <option value="en" >English</option>
+        <option value="ru" >Русский</option>
+    </select>
+   
+</div>
+
+<p id="content">Hello, World!</p>
+
+<script>
+    // JavaScript for Language Selection
+    function changeLanguage() {
+        var selector = document.getElementById("languageSelector");
+        var selectedValue = selector.options[selector.selectedIndex].value;
+        var flagIcon = document.getElementById("flagIcon");
+        var content = document.getElementById("content");
+
+        flagIcon.innerHTML = '<img src="' + selector.options[selector.selectedIndex].getAttribute("data-icon") + '" alt="Flag">';
+        
+        if (selectedValue === "en") {
+            content.innerText = "Hello, World!";
+        } else if (selectedValue === "ru") {
+            content.innerText = "Привет, мир!";
+        }
+    }
+</script>
+
+</body>
+</html>
